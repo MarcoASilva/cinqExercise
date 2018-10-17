@@ -7,6 +7,8 @@ CINQ Angular Exercise
 
 # Install
 - Clone the project
+- cd to cinqExercise
+- npm install
 
 # Run
 - cd to cinqExercise
