@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+.screen-s{
+    display: none;
+    text-align: center;
+}
+
+.user-card{
+    display: inline-block!important;
+    margin: 1%;
+    text-align: left;
+}
+
+.select-all{
+    text-align: left;
+    margin-top: 3%;
+    margin-bottom: 5%;
+}
+
+.card-link{
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+    /* Styles go here */
+    .screen-s{
+        display: block;
+    }
+    .screen-l{
+        display: none;
+    }
+}

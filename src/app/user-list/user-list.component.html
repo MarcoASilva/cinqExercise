@@ -1,0 +1,70 @@
+<div class="content">
+
+  <div class="container screen-l">
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+      </div>
+      <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+      &nbsp;
+      <div class="btn-group" role="group" aria-label="Options">
+        <button type="button" class="btn btn-outline-danger" (click)="deleteSelected()">Delete Selected</button>
+        <button type="button" class="btn btn-outline-primary" (click)="download()">Download</button>
+      </div>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><input type="checkbox" aria-label="Select all users" #selectedAll (click)="selectAll(selectedAll.checked)"></th>
+          <th scope="col">Name</th>
+          <th scope="col">Actions</th> 
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users" class="user-lines">
+          <th scope="row"><input type="checkbox" [(ngModel)]="user.selected" aria-label="Select user"></th>
+          <td class="col-user-name">{{user.lastName}}, {{user.firstName}}</td>
+          <td class="col-user-actions"><button type="button" class="btn btn-primary" routerLink="/user/{{user.id}}">Show</button> | <button type="button" class="btn btn-danger" (click)="delete(user.id)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="text-secondary">{{usersSelected()}} items selected</p>
+    
+  </div>
+
+  <div class="container screen-s">
+
+    <!-- <h4>Filter by Name:</h4> -->
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fas fa-search"></i></span>
+        <span class="input-group-text">Name</span>
+      </div>
+      <input type="text" [(ngModel)]="userName" class="form-control" aria-label="User's name">
+    </div>
+    
+    <button type="button" class="btn btn-outline-danger btn-lg btn-block" (click)="deleteSelected()">Delete Selected</button>
+    <button type="button" class="btn btn-outline-primary btn-lg btn-block" (click)="download()">Download</button>
+
+    <div class="select-all text-secondary">
+      <input type="checkbox" aria-label="Select all users" #selectedAll (click)="selectAll(selectedAll.checked)"> Select All
+    </div>
+
+    <div *ngFor="let user of users | filterByName: userName" class="card user-card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{user.lastName}}, {{user.firstName}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Age of {{user.age}}</h6>
+        <p class="card-text">{{user.description}}</p>
+        <input type="checkbox" [(ngModel)]="user.selected" class="mr-5" aria-label="Select user">
+        <a class="card-link" routerLink="/user/{{user.id}}">Show</a>
+        <a class="card-link text-danger" (click)="delete(user.id)">Delete</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>

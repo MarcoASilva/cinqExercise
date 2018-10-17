@@ -1,0 +1,125 @@
+<div class="content">
+
+  <div class="container">
+    <a routerLink="/user-list" routerLinkActive="active">
+      <p class="text-secondary"><i class="fas fa-arrow-left"></i>&nbsp;Back</p>
+    </a>
+  </div>
+
+  <div class="container">
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">User Details</h5>
+        <h6 class="card-subtitle mb-2 text-muted">You can edit the First and Last Name of the user and click "Apply" to save chanbges or "Cancel" to discard your changes.</h6>
+        <div class="input-group mb-3 mt-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text">First Name</span>
+          </div>
+          <input type="text" [(ngModel)]="user.firstName" id="first-name-input" #firstName class="form-control" aria-label="First Name" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Last Name</span>
+          </div>
+          <input type="text" [(ngModel)]="user.lastName" #lastName class="form-control" aria-label="Last Name" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <div class="input-group mb-3 mt-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Age</span>
+          </div>
+          <input type="number" disabled [(ngModel)]="user.age" class="form-control" aria-label="Age" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <div class="input-group mb-3 mt-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
+          </div>
+          <input type="text" disabled [(ngModel)]="user.description" class="form-control" aria-label="Description" aria-describedby="inputGroup-sizing-default">
+        </div>
+      </div>
+      <div class="card-body">
+        <button type="button" class="btn btn-secondary" (click)="cancel(firstName.className + lastName.className)">Cancel</button> | <button type="button" class="btn btn-success" id="apply-btn" data-toggle="modal" data-target="#applyModal">Apply</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="modal" id="cancelModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Discard Changes?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Do you realy want to discard your changes to the user?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="discardChanges()">Discard changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="applyModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Save Changes?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Do you realy want to apply and save your changes to the user?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" id="save-btn" class="btn btn-primary" data-dismiss="modal" (click)="apply()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="discarded" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Changes Dicarded</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Your changes to the user were discarded successfully!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="saved" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Changes Saved</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Your changes to the user were saved successfully!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="saved-ok-btn" class="btn btn-secondary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
